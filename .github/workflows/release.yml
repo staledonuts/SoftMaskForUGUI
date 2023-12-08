@@ -70,3 +70,16 @@ jobs:
       message: "chore(release): ${{ needs.release.outputs.version }} [skip ci]"
     permissions:
       contents: write
+
+  deploy:
+    name: 🚀 Deploy pages
+    needs: release
+    if: needs.release.outputs.released == 'true' && (github.ref_name == 'release' || github.ref_name == 'preview')
+    uses: ./.github/workflows/deploy.yml
+    secrets:
+      UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+    permissions:
+      contents: read
+      checks: write
+      pages: write
+      id-token: write

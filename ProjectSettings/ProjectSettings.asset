@@ -134,7 +134,6 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: 11400000, guid: 4a296417f017541d996cae57d20a95a3, type: 2}
   - {fileID: 11400000, guid: 580e3f49cc7954e56a9467cc356a1f73, type: 2}
-  - {fileID: 11400000, guid: 187ecc32ad1d0400898f8498399157df, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -593,13 +592,13 @@ PlayerSettings:
   webGLTemplate: APPLICATION:Default
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
-  webGLCompressionFormat: 1
+  webGLCompressionFormat: 2
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
     1: 
-    13: UI_SOFTMASK_LOG
+    13: SM4UI_LOG
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
