@@ -1,5 +1,26 @@
 {
   "dependencies": {
+    "com.coffee.development": {
+      "version": "https://github.com/mob-sakai/Coffee.Internal.git?path=Packages/Development",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3c59311de6b66649eec3715a088846d6059bcc9c"
+    },
+    "com.coffee.nano-monitor": {
+      "version": "https://github.com/mob-sakai/Coffee.Internal.git?path=Packages/NanoMonitor",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3c59311de6b66649eec3715a088846d6059bcc9c"
+    },
+    "com.coffee.simple-scene-navigator": {
+      "version": "https://github.com/mob-sakai/Coffee.Internal.git?path=Packages/SceneNavigator",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3c59311de6b66649eec3715a088846d6059bcc9c"
+    },
     "com.coffee.softmask-for-ugui": {
       "version": "file:src",
       "depth": 0,
@@ -41,14 +62,14 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.settings-manager": {
-      "version": "1.0.1",
+      "version": "1.0.3",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.31",
+      "version": "1.1.33",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -59,7 +80,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.testtools.codecoverage": {
-      "version": "1.2.4",
+      "version": "1.2.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -79,7 +100,7 @@
     },
     "com.unity.ugui": {
       "version": "1.0.0",
-      "depth": 0,
+      "depth": 1,
       "source": "builtin",
       "dependencies": {
         "com.unity.modules.ui": "1.0.0",
@@ -100,7 +121,7 @@
     },
     "com.unity.modules.ui": {
       "version": "1.0.0",
-      "depth": 1,
+      "depth": 2,
       "source": "builtin",
       "dependencies": {}
     }
