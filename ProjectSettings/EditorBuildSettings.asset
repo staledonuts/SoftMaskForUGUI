@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Samples/Demo/SoftMask_Demo.unity
     guid: aa372e7b286d0416eb942adfc3e442ec
+  - enabled: 1
+    path: Assets/Samples/TextMeshPro Support/SoftMask_Demo_TextMeshProSupport.unity
+    guid: b29fc66cd80684c2d903f2d65255b59b
+  - enabled: 1
+    path: Assets/Demos/SoftMaskable Shader/SoftMask_Demo_SoftMaskableShader.unity
+    guid: 14c612a34765148c09143a1d77789838
+  - enabled: 1
+    path: Assets/Demos/VR Support/SoftMask_Demo_VRSupport.unity
+    guid: 60408d380382c4a71a4b2488f4b608b0
+  - enabled: 1
+    path: Assets/Demos/ReadMe/SoftMask_Readme.unity
+    guid: c84daa5d0eba141b490bc6a987019ed1
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 314dc4887c5db44d0b8af67c7c5f31bb,
       type: 2}
