@@ -1,9 +1,9 @@
-# <img alt="logo" height="26" src="https://github.com/mob-sakai/mob-sakai/assets/12690315/05eae124-58aa-414d-9e9f-cc65022e9854"/> SoftMaskForUGUI
+# <img alt="logo" height="26" src="https://github.com/mob-sakai/mob-sakai/assets/12690315/05eae124-58aa-414d-9e9f-cc65022e9854"/> SoftMaskForUGUI v2
 
 [![](https://img.shields.io/npm/v/com.coffee.softmask-for-ugui?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.coffee.softmask-for-ugui/)
 [![](https://img.shields.io/github/v/release/mob-sakai/SoftMaskForUGUI?include_prereleases)](https://github.com/mob-sakai/SoftMaskForUGUI/releases)
 [![](https://img.shields.io/github/release-date/mob-sakai/SoftMaskForUGUI.svg)](https://github.com/mob-sakai/SoftMaskForUGUI/releases)  
-![](https://img.shields.io/badge/Unity-2019.4+-57b9d3.svg?style=flat&logo=unity)
+![](https://img.shields.io/badge/Unity-2020.1+-57b9d3.svg?style=flat&logo=unity)
 [![](https://img.shields.io/github/license/mob-sakai/SoftMaskForUGUI.svg)](https://github.com/mob-sakai/SoftMaskForUGUI/blob/main/LICENSE.txt)
 [![](https://mob-sakai.github.io/DocFxForUnity/CodeCoverage/badge_linecoverage.svg)](https://mob-sakai.github.io/TestPkgDev/CodeCoverage/)  
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-orange.svg)](http://makeapullrequest.com)
@@ -16,17 +16,17 @@
 
 <img src="https://github.com/mob-sakai/mob-sakai/assets/12690315/3cca20d0-8565-49d1-9f5c-0a6dbc2cb2eb" width="500"/>
 
-This package provides a soft mask for Unity UI (uGUI).
+This package provides a soft masking for Unity UI (uGUI).
 
 #### Features
 
 - SoftMask is compatible with Mask. You can easily switch from the inspector.
-- UI elements (Text, Image, etc.) with the SoftMaskable component attached are masked by the soft mask buffer.
-- The SoftMaskable component is automatically attached to objects under SoftMask.
-- You can add or remove the masking regions using the MaskingShape component.
+- UI elements (Text, Image, etc.) under `SoftMask` component are masked by the soft mask buffer.
+  - `SoftMaskable` component is automatically attached to objects under `SoftMask` component.
+- You can add or remove the masking area using `MaskingShape` component.
 - Supports up to 4 nested soft masks.
-- Supports scroll view.
-- Supports TextMeshPro.
+- Supports masking in `ScrollRect`.
+- Supports `TextMeshProUGUI`.
 - (Optional) Raycast is filtered only for the visible part of the soft mask.
 - Supports overlay, camera space, and world space.
 - To support soft masks in custom shaders, just add 3 lines of code. For details, please refer to [Usage](#usage-with-your-custom-shaders).
