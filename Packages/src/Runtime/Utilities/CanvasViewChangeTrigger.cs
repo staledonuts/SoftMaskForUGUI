@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Coffee.UISoftMaskInternal;
 using UnityEngine;
 

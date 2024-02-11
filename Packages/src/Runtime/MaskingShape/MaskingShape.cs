@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Coffee.UISoftMaskInternal;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,16 +23,21 @@ namespace Coffee.UISoftMask
             Subtract
         }
 
-        [Tooltip("Masking method.")] [SerializeField]
+        [Tooltip("Masking method.")]
+        [SerializeField]
         private MaskingMethod m_MaskingMethod = MaskingMethod.Additive;
 
-        [Tooltip("Show the masking shape graphic.")] [SerializeField]
+        [Tooltip("Show the masking shape graphic.")]
+        [SerializeField]
         private bool m_ShowMaskGraphic;
 
-        [Tooltip("Enable alpha hit test.")] [SerializeField]
+        [Tooltip("Enable alpha hit test.")]
+        [SerializeField]
         private bool m_AlphaHitTest;
 
-        [Tooltip("Enable anti-alias masking.")] [SerializeField] [Range(0f, 1f)]
+        [Tooltip("Enable anti-alias masking.")]
+        [SerializeField]
+        [Range(0f, 1f)]
         private float m_AntiAliasingThreshold;
 
         [Tooltip("The range for soft masking.")]

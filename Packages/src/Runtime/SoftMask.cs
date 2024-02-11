@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Coffee.UISoftMaskInternal;
 using UnityEditor;
@@ -68,13 +68,17 @@ namespace Coffee.UISoftMask
         [SerializeField]
         private DownSamplingRate m_DownSamplingRate = DownSamplingRate.x1;
 
-        [Tooltip("The threshold for anti-alias masking.")] [SerializeField] [Range(0f, 1f)]
+        [Tooltip("The threshold for anti-alias masking.")]
+        [SerializeField]
+        [Range(0f, 1f)]
         private float m_AntiAliasingThreshold;
 
-        [SerializeField] [Obsolete]
+        [SerializeField]
+        [Obsolete]
         private float m_Softness = -1;
 
-        [SerializeField] [Obsolete]
+        [SerializeField]
+        [Obsolete]
         private bool m_PartOfParent;
 
         private CommandBuffer _cb;

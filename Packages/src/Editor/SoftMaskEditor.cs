@@ -1,4 +1,4 @@
-﻿using Coffee.UISoftMaskInternal;
+using Coffee.UISoftMaskInternal;
 using UnityEditor;
 using UnityEditor.U2D;
 using UnityEngine;
@@ -57,20 +57,30 @@ namespace Coffee.UISoftMask
             EditorGUILayout.PropertyField(_maskingMode);
             OpenProjectSettings(current);
 
-            if (_maskingMode.intValue == (int)SoftMask.MaskingMode.SoftMasking)
+            switch ((SoftMask.MaskingMode)_maskingMode.intValue)
             {
-                EditorGUILayout.PropertyField(_showMaskGraphic);
-                EditorGUILayout.PropertyField(_alphaHitTest);
-                EditorGUILayout.PropertyField(_downSamplingRate);
-                EditorGUILayout.PropertyField(_softMaskingRange);
+                case SoftMask.MaskingMode.SoftMasking:
+                {
+                    EditorGUILayout.PropertyField(_showMaskGraphic);
+                    EditorGUILayout.PropertyField(_alphaHitTest);
+                    EditorGUILayout.PropertyField(_downSamplingRate);
+                    EditorGUILayout.PropertyField(_softMaskingRange);
 
-                FixUiMaskIssue(current); // Fix 'UIMask' issue.
-                DrawSoftMaskBuffer(); // Preview soft mask buffer.
-            }
-            else
-            {
-                EditorGUILayout.PropertyField(_alphaHitTest);
-                EditorGUILayout.PropertyField(_antiAliasingThreshold);
+                    FixUiMaskIssue(current); // Fix 'UIMask' issue.
+                    DrawSoftMaskBuffer(); // Preview soft mask buffer.
+                    break;
+                }
+                case SoftMask.MaskingMode.AntiAliasing:
+                {
+                    EditorGUILayout.PropertyField(_alphaHitTest);
+                    EditorGUILayout.PropertyField(_antiAliasingThreshold);
+                    break;
+                }
+                case SoftMask.MaskingMode.Normal:
+                {
+                    EditorGUILayout.PropertyField(_showMaskGraphic);
+                    break;
+                }
             }
 
             serializedObject.ApplyModifiedProperties();

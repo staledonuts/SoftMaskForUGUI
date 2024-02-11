@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "08853570034de9a71dc8d8be21cc7299c3bb80bd"
+      "hash": "330e6bbab7026a922ce15d65b5c62b0f2eb69c6f"
     },
     "com.coffee.nano-monitor": {
       "version": "https://github.com/mob-sakai/Coffee.Internal.git?path=Packages/NanoMonitor",
@@ -14,7 +14,7 @@
       "dependencies": {
         "com.unity.ugui": "1.0.0"
       },
-      "hash": "08853570034de9a71dc8d8be21cc7299c3bb80bd"
+      "hash": "330e6bbab7026a922ce15d65b5c62b0f2eb69c6f"
     },
     "com.coffee.simple-scene-navigator": {
       "version": "https://github.com/mob-sakai/Coffee.Internal.git?path=Packages/SceneNavigator",
@@ -23,7 +23,7 @@
       "dependencies": {
         "com.unity.ugui": "1.0.0"
       },
-      "hash": "08853570034de9a71dc8d8be21cc7299c3bb80bd"
+      "hash": "330e6bbab7026a922ce15d65b5c62b0f2eb69c6f"
     },
     "com.coffee.softmask-for-ugui": {
       "version": "file:src",
@@ -84,6 +84,12 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "com.unity.modules.animation": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
     },
     "com.unity.modules.imgui": {
       "version": "1.0.0",

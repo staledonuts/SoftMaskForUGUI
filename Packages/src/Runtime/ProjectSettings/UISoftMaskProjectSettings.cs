@@ -1,4 +1,4 @@
-﻿#pragma warning disable CS0414
+#pragma warning disable CS0414
 using System.Linq;
 using Coffee.UISoftMaskInternal;
 using UnityEditor;
