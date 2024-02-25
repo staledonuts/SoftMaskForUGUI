@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.Profiling;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+#if TMP_ENABLE
+using TMPro;
+#endif
 
 namespace Coffee.UISoftMask
 {
@@ -374,6 +377,18 @@ namespace Coffee.UISoftMask
         {
             var texture = graphic.mainTexture;
             var mesh = _mesh;
+#if TMP_ENABLE
+            if (graphic is TextMeshProUGUI textMeshPro)
+            {
+                mesh = textMeshPro.mesh;
+                texture = textMeshPro.fontMaterial.mainTexture;
+            }
+            else if (graphic is TMP_SubMeshUI subMeshUI)
+            {
+                mesh = subMeshUI.mesh;
+                texture = subMeshUI.material.mainTexture;
+            }
+#endif
             if (!mesh) return;
             if (!graphic.IsInScreen()) return;
 

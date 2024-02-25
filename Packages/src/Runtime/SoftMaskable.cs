@@ -3,6 +3,9 @@ using Coffee.UISoftMaskInternal;
 using UnityEngine;
 using UnityEngine.Profiling;
 using UnityEngine.UI;
+#if TMP_ENABLE
+using TMPro;
+#endif
 
 namespace Coffee.UISoftMask
 {
@@ -114,6 +117,26 @@ namespace Coffee.UISoftMask
 
             var useStencil = UISoftMaskProjectSettings.useStencilOutsideScreen;
             var localId = 0u;
+#if UNITY_EDITOR
+            if (useStencil)
+            {
+                if (softMask && _softMaskDepth < 0)
+                {
+                    MaterialRepository.Release(ref _maskableMaterial);
+                    return baseMaterial;
+                }
+
+                if (!softMask && (!TryGetComponent(out softMask) || !softMask.SoftMaskingEnabled()))
+                {
+                    MaterialRepository.Release(ref _maskableMaterial);
+                    return baseMaterial;
+                }
+
+                localId = (uint)GetInstanceID() + (UISoftMaskProjectSettings.useStencilOutsideScreen ? 1u : 0u);
+            }
+            else
+#endif
+
             if (!softMask || _softMaskDepth < 0 || 4 <= _softMaskDepth)
             {
                 MaterialRepository.Release(ref _maskableMaterial);

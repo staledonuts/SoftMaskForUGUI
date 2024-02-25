@@ -7,6 +7,9 @@ using UnityEngine.Events;
 using UnityEngine.Profiling;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+#if TMP_ENABLE
+using TMPro;
+#endif
 
 namespace Coffee.UISoftMask
 {
@@ -738,6 +741,18 @@ namespace Coffee.UISoftMask
                 Profiler.BeginSample("(SM4UI)[SoftMask] RenderSoftMaskBuffer > ApplyMaterialPropertyBlock");
                 var mat = graphic.canvasRenderer.GetMaterial(0);
                 var texture = graphic.mainTexture;
+#if TMP_ENABLE
+                {
+                    if (graphic is TextMeshProUGUI textMeshPro)
+                    {
+                        texture = textMeshPro.fontMaterial.mainTexture;
+                    }
+                    else if (graphic is TMP_SubMeshUI subMeshUI)
+                    {
+                        texture = subMeshUI.material.mainTexture;
+                    }
+                }
+#endif
                 SoftMaskUtils.ApplyMaterialPropertyBlock(_mpb, softMaskDepth, texture, softMaskingRange);
                 Profiler.EndSample();
             }
@@ -763,6 +778,20 @@ namespace Coffee.UISoftMask
             }
 
             var mesh = _mesh;
+#if TMP_ENABLE
+            {
+                if (graphic is TextMeshProUGUI textMeshPro)
+                {
+                    mesh = textMeshPro.mesh;
+                    _mpb.SetFloat(ShaderPropertyIds.alphaAdd, -0.25f);
+                }
+                else if (graphic is TMP_SubMeshUI subMeshUI)
+                {
+                    mesh = subMeshUI.mesh;
+                }
+            }
+#endif
+
             if (mesh)
             {
                 Profiler.BeginSample("(SM4UI)[SoftMask] RenderSoftMaskBuffer > Draw mesh");
