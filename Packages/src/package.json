@@ -36,6 +36,11 @@
       "displayName": "TextMeshPro Support v3.2 or v4.0",
       "description": "TextMeshPro Support v3.2 or v4.0",
       "path": "Samples~/TextMeshPro Support v3.2 or v4.0~"
+    },
+    {
+      "displayName": "UIParticle Support",
+      "description": "UIParticle Support",
+      "path": "Samples~/UIParticle Support"
     }
   ]
 }
