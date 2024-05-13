@@ -88,7 +88,7 @@ float2 WorldToUv(float4 worldPos)
 #define SoftMask(_, __) 1
 
 #endif
-
+/*
 #ifndef UIGammaToLinear
 half3 UIGammaToLinear(half3 value)
 {
@@ -99,6 +99,6 @@ half3 UIGammaToLinear(half3 value)
     const half3 split = 0.0725490; // Equals 18.5 / 255
     return (value < split) ? low : high;
 }
-#endif
+#endif*/
 
 #endif // UI_SOFT_MASK_INCLUDED
