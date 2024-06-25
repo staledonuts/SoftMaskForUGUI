@@ -5,7 +5,7 @@ sampler2D _SoftMaskTex;
 half4 _SoftMaskColor;
 float _AlphaClipThreshold;
 half _SoftMaskInside;
-halft4 _SoftMaskOutsideColor;
+half4 _SoftMaskOutsideColor;
 
 void SoftMaskClip(float alpha)
 {
