@@ -4,8 +4,8 @@
 sampler2D _SoftMaskTex;
 half4 _SoftMaskColor;
 float _AlphaClipThreshold;
-float _SoftMaskInside;
-float4 _SoftMaskOutsideColor;
+half _SoftMaskInside;
+half4 _SoftMaskOutsideColor;
 
 void SoftMaskClip(float alpha)
 {
@@ -16,11 +16,8 @@ void SoftMaskClip(float alpha)
     #endif
 }
 
-float SoftMaskSample(float2 uv)
+half SoftMaskSample(float2 uv)
 {
-    #if UI_SOFT_MASKABLE_STEREO
-    uv = lerp(half2(uv.x/2, uv.y), half2(uv.x/2 +0.5, uv.y), unity_StereoEyeIndex);
-    #endif
     half4 mask = tex2D(_SoftMaskTex, uv);
     half4 alpha = saturate(lerp(half4(1, 1, 1, 1),
                                 lerp(mask, half4(1, 1, 1, 1) - mask, _SoftMaskColor - half4(1, 1, 1, 1)),
@@ -65,7 +62,7 @@ float Approximately(float4x4 a, float4x4 b)
         0.1);
 }
 
-float2 WorldToUv(float4 worldPos)
+/*float2 WorldToUv(float4 worldPos)
 {
     float4x4 gameVp = lerp(_GameVP, _GameVP_2, unity_StereoEyeIndex);
     float4x4 gameTvp = lerp(_GameTVP, _GameTVP_2, unity_StereoEyeIndex);
@@ -78,12 +75,12 @@ float2 WorldToUv(float4 worldPos)
         clipPos.xy / clipPos.w * 0.5 + 0.5,
         clipPosG.xy / clipPosG.w * 0.5 + 0.5,
         isSceneView);
-}
+}*/
 
-#define UI_SOFT_MASKABLE_EDITOR_ONLY(x) x
-#define SoftMask(_, worldPos) SoftMaskSample(WorldToUv(worldPos))
+//#define UI_SOFT_MASKABLE_EDITOR_ONLY(x) x
+//#define SoftMask(_, worldPos) SoftMaskSample(WorldToUv(worldPos))
 // ^^ UI_SOFT_MASKABLE_EDITOR
-#else
+//#else
 #define UI_SOFT_MASKABLE_EDITOR_ONLY(_)
 #define SoftMask(_, __) 1
 
