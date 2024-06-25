@@ -4,8 +4,8 @@
 sampler2D _SoftMaskTex;
 half4 _SoftMaskColor;
 float _AlphaClipThreshold;
-float _SoftMaskInside;
-float4 _SoftMaskOutsideColor;
+half _SoftMaskInside;
+halft4 _SoftMaskOutsideColor;
 
 void SoftMaskClip(float alpha)
 {
@@ -54,7 +54,7 @@ float4x4 _GameVP;
 float4x4 _GameTVP;
 float4x4 _GameVP_2;
 float4x4 _GameTVP_2;
-fixed Approximately(float4x4 a, float4x4 b)
+half Approximately(float4x4 a, float4x4 b)
 {
     float4x4 d = abs(a - b);
     return step(
@@ -70,7 +70,7 @@ float2 WorldToUv(float4 worldPos)
     float4x4 gameVp = lerp(_GameVP, _GameVP_2, unity_StereoEyeIndex);
     float4x4 gameTvp = lerp(_GameTVP, _GameTVP_2, unity_StereoEyeIndex);
     
-    fixed isSceneView = 1 - Approximately(UNITY_MATRIX_VP, gameVp);
+    half isSceneView = 1 - Approximately(UNITY_MATRIX_VP, gameVp);
     
     float4 clipPos = mul(UNITY_MATRIX_VP, worldPos);
     float4 clipPosG = mul(gameTvp, worldPos);
