@@ -4,8 +4,8 @@
 sampler2D _SoftMaskTex;
 half4 _SoftMaskColor;
 float _AlphaClipThreshold;
-half _SoftMaskInside;
-half4 _SoftMaskOutsideColor;
+float _SoftMaskInside;
+float4 _SoftMaskOutsideColor;
 
 void SoftMaskClip(float alpha)
 {
@@ -54,7 +54,7 @@ float4x4 _GameVP;
 float4x4 _GameTVP;
 float4x4 _GameVP_2;
 float4x4 _GameTVP_2;
-half Approximately(float4x4 a, float4x4 b)
+float Approximately(float4x4 a, float4x4 b)
 {
     float4x4 d = abs(a - b);
     return step(
