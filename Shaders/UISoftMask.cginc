@@ -62,7 +62,7 @@ float Approximately(float4x4 a, float4x4 b)
         0.1);
 }
 
-/*float2 WorldToUv(float4 worldPos)
+float2 WorldToUv(float4 worldPos)
 {
     float4x4 gameVp = lerp(_GameVP, _GameVP_2, unity_StereoEyeIndex);
     float4x4 gameTvp = lerp(_GameTVP, _GameTVP_2, unity_StereoEyeIndex);
@@ -75,7 +75,7 @@ float Approximately(float4x4 a, float4x4 b)
         clipPos.xy / clipPos.w * 0.5 + 0.5,
         clipPosG.xy / clipPosG.w * 0.5 + 0.5,
         isSceneView);
-}*/
+}
 
 //#define UI_SOFT_MASKABLE_EDITOR_ONLY(x) x
 //#define SoftMask(_, worldPos) SoftMaskSample(WorldToUv(worldPos))
