@@ -4,8 +4,8 @@
 sampler2D _SoftMaskTex;
 half4 _SoftMaskColor;
 float _AlphaClipThreshold;
-float _SoftMaskInside;
-float4 _SoftMaskOutsideColor;
+half _SoftMaskInside;
+half4 _SoftMaskOutsideColor;
 
 void SoftMaskClip(float alpha)
 {
@@ -16,15 +16,21 @@ void SoftMaskClip(float alpha)
     #endif
 }
 
-float SoftMaskSample(float2 uv, float alpha)
+float SoftMaskSample(float2 uv)
 {
+    #if UI_SOFT_MASKABLE_STEREO
+    uv = lerp(half2(uv.x/2, uv.y), half2(uv.x/2 +0.5, uv.y), unity_StereoEyeIndex);
+    #endif
+    half4 mask = tex2D(_SoftMaskTex, uv);
+    half4 alpha = saturate(lerp(half4(1, 1, 1, 1),
+                                lerp(mask, half4(1, 1, 1, 1) - mask, _SoftMaskColor - half4(1, 1, 1, 1)),
+                                _SoftMaskColor));
+    #if UI_SOFT_MASKABLE_EDITOR
         _SoftMaskInside = step(0, uv.x) * step(uv.x, 1) * step(0, uv.y) * step(uv.y, 1);
-        float alpha_x = lerp(_SoftMaskOutsideColor.x, alpha, _SoftMaskInside);
-        float alpha_y = lerp(_SoftMaskOutsideColor.y, alpha, _SoftMaskInside);
-        float alpha_z = lerp(_SoftMaskOutsideColor.z, alpha, _SoftMaskInside);
-        float alpha_w = lerp(_SoftMaskOutsideColor.w, alpha, _SoftMaskInside);
+        alpha = lerp(_SoftMaskOutsideColor, alpha, _SoftMaskInside);
+    #endif
 
-    return alpha_x * alpha_y * alpha_z * alpha_w;
+    return alpha.x * alpha.y * alpha.z * alpha.w;
 }
 
 #if UI_SOFT_MASKABLE
@@ -48,7 +54,7 @@ float4x4 _GameVP;
 float4x4 _GameTVP;
 float4x4 _GameVP_2;
 float4x4 _GameTVP_2;
-float Approximately(float4x4 a, float4x4 b)
+half Approximately(float4x4 a, float4x4 b)
 {
     float4x4 d = abs(a - b);
     return step(
@@ -74,10 +80,10 @@ float2 WorldToUv(float4 worldPos)
         isSceneView);
 }
 
-//#define UI_SOFT_MASKABLE_EDITOR_ONLY(x) x
-//#define SoftMask(_, worldPos) SoftMaskSample(WorldToUv(worldPos))
+#define UI_SOFT_MASKABLE_EDITOR_ONLY(x) x
+#define SoftMask(_, worldPos) SoftMaskSample(WorldToUv(worldPos))
 // ^^ UI_SOFT_MASKABLE_EDITOR
-//#else
+#else
 #define UI_SOFT_MASKABLE_EDITOR_ONLY(_)
 #define SoftMask(_, __) 1
 
