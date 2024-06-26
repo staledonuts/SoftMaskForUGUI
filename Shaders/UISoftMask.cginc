@@ -4,8 +4,8 @@
 sampler2D _SoftMaskTex;
 half4 _SoftMaskColor;
 float _AlphaClipThreshold;
-half _SoftMaskInside;
-half4 _SoftMaskOutsideColor;
+fixed _SoftMaskInside;
+fixed4 _SoftMaskOutsideColor;
 
 void SoftMaskClip(float alpha)
 {
@@ -16,8 +16,11 @@ void SoftMaskClip(float alpha)
     #endif
 }
 
-half SoftMaskSample(float2 uv)
+float SoftMaskSample(float2 uv)
 {
+    #if UI_SOFT_MASKABLE_STEREO
+    uv = lerp(half2(uv.x/2, uv.y), half2(uv.x/2 +0.5, uv.y), unity_StereoEyeIndex);
+    #endif
     half4 mask = tex2D(_SoftMaskTex, uv);
     half4 alpha = saturate(lerp(half4(1, 1, 1, 1),
                                 lerp(mask, half4(1, 1, 1, 1) - mask, _SoftMaskColor - half4(1, 1, 1, 1)),
@@ -51,7 +54,7 @@ float4x4 _GameVP;
 float4x4 _GameTVP;
 float4x4 _GameVP_2;
 float4x4 _GameTVP_2;
-float Approximately(float4x4 a, float4x4 b)
+fixed Approximately(float4x4 a, float4x4 b)
 {
     float4x4 d = abs(a - b);
     return step(
@@ -67,7 +70,7 @@ float2 WorldToUv(float4 worldPos)
     float4x4 gameVp = lerp(_GameVP, _GameVP_2, unity_StereoEyeIndex);
     float4x4 gameTvp = lerp(_GameTVP, _GameTVP_2, unity_StereoEyeIndex);
     
-    half isSceneView = 1 - Approximately(UNITY_MATRIX_VP, gameVp);
+    fixed isSceneView = 1 - Approximately(UNITY_MATRIX_VP, gameVp);
     
     float4 clipPos = mul(UNITY_MATRIX_VP, worldPos);
     float4 clipPosG = mul(gameTvp, worldPos);
@@ -77,15 +80,15 @@ float2 WorldToUv(float4 worldPos)
         isSceneView);
 }
 
-//#define UI_SOFT_MASKABLE_EDITOR_ONLY(x) x
-//#define SoftMask(_, worldPos) SoftMaskSample(WorldToUv(worldPos))
+#define UI_SOFT_MASKABLE_EDITOR_ONLY(x) x
+#define SoftMask(_, worldPos) SoftMaskSample(WorldToUv(worldPos))
 // ^^ UI_SOFT_MASKABLE_EDITOR
-//#else
+#else
 #define UI_SOFT_MASKABLE_EDITOR_ONLY(_)
 #define SoftMask(_, __) 1
 
 #endif
-/*
+
 #ifndef UIGammaToLinear
 half3 UIGammaToLinear(half3 value)
 {
@@ -96,6 +99,6 @@ half3 UIGammaToLinear(half3 value)
     const half3 split = 0.0725490; // Equals 18.5 / 255
     return (value < split) ? low : high;
 }
-#endif*/
+#endif
 
 #endif // UI_SOFT_MASK_INCLUDED
