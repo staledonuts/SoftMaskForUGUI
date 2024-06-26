@@ -89,14 +89,4 @@ float2 WorldToUv(float4 worldPos)
 
 #endif
 
-half3 UIGammaToLinear(half3 value)
-{
-    half3 low = 0.0849710 * value - 0.000163029;
-    half3 high = value * (value * (value * 0.265885 + 0.736584) - 0.00980184) + 0.00319697;
-
-    // We should be 0.5 away from any actual gamma value stored in an 8 bit channel
-    const half3 split = 0.0725490; // Equals 18.5 / 255
-    return (value < split) ? low : high;
-}
-
 #endif // UI_SOFT_MASK_INCLUDED
