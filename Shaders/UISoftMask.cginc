@@ -19,9 +19,12 @@ void SoftMaskClip(float alpha)
 float SoftMaskSample(float2 uv)
 {
         _SoftMaskInside = step(0, uv.x) * step(uv.x, 1) * step(0, uv.y) * step(uv.y, 1);
-        float4 alpha = lerp(_SoftMaskOutsideColor, alpha, _SoftMaskInside);
+        float alpha_x = lerp(_SoftMaskOutsideColor.x, alpha, _SoftMaskInside);
+        float alpha_y = lerp(_SoftMaskOutsideColor.y, alpha, _SoftMaskInside);
+        float alpha_z = lerp(_SoftMaskOutsideColor.z, alpha, _SoftMaskInside);
+        float alpha_w = lerp(_SoftMaskOutsideColor.w, alpha, _SoftMaskInside);
 
-    return alpha.x * alpha.y * alpha.z * alpha.w;
+    return alpha_x * alpha_y * alpha_z * alpha_w;
 }
 
 #if UI_SOFT_MASKABLE
