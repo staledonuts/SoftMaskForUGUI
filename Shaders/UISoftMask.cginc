@@ -4,8 +4,8 @@
 sampler2D _SoftMaskTex;
 half4 _SoftMaskColor;
 float _AlphaClipThreshold;
-fixed _SoftMaskInside;
-fixed4 _SoftMaskOutsideColor;
+float _SoftMaskInside;
+float4 _SoftMaskOutsideColor;
 
 void SoftMaskClip(float alpha)
 {
@@ -18,13 +18,6 @@ void SoftMaskClip(float alpha)
 
 float SoftMaskSample(float2 uv)
 {
-    #if UI_SOFT_MASKABLE_STEREO
-    uv = lerp(half2(uv.x/2, uv.y), half2(uv.x/2 +0.5, uv.y), unity_StereoEyeIndex);
-    #endif
-    half4 mask = tex2D(_SoftMaskTex, uv);
-    half4 alpha = saturate(lerp(half4(1, 1, 1, 1),
-                                lerp(mask, half4(1, 1, 1, 1) - mask, _SoftMaskColor - half4(1, 1, 1, 1)),
-                                _SoftMaskColor));
     #if UI_SOFT_MASKABLE_EDITOR
         _SoftMaskInside = step(0, uv.x) * step(uv.x, 1) * step(0, uv.y) * step(uv.y, 1);
         alpha = lerp(_SoftMaskOutsideColor, alpha, _SoftMaskInside);
@@ -54,7 +47,7 @@ float4x4 _GameVP;
 float4x4 _GameTVP;
 float4x4 _GameVP_2;
 float4x4 _GameTVP_2;
-fixed Approximately(float4x4 a, float4x4 b)
+float Approximately(float4x4 a, float4x4 b)
 {
     float4x4 d = abs(a - b);
     return step(
@@ -87,18 +80,6 @@ float2 WorldToUv(float4 worldPos)
 #define UI_SOFT_MASKABLE_EDITOR_ONLY(_)
 #define SoftMask(_, __) 1
 
-#endif
-
-#ifndef UIGammaToLinear
-half3 UIGammaToLinear(half3 value)
-{
-    half3 low = 0.0849710 * value - 0.000163029;
-    half3 high = value * (value * (value * 0.265885 + 0.736584) - 0.00980184) + 0.00319697;
-
-    // We should be 0.5 away from any actual gamma value stored in an 8 bit channel
-    const half3 split = 0.0725490; // Equals 18.5 / 255
-    return (value < split) ? low : high;
-}
 #endif
 
 #endif // UI_SOFT_MASK_INCLUDED
