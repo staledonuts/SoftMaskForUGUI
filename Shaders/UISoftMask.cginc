@@ -19,7 +19,7 @@ void SoftMaskClip(float alpha)
 float SoftMaskSample(float2 uv)
 {
         _SoftMaskInside = step(0, uv.x) * step(uv.x, 1) * step(0, uv.y) * step(uv.y, 1);
-        alpha = lerp(_SoftMaskOutsideColor, alpha, _SoftMaskInside);
+        float alpha = lerp(_SoftMaskOutsideColor, alpha, _SoftMaskInside);
 
     return alpha.x * alpha.y * alpha.z * alpha.w;
 }
