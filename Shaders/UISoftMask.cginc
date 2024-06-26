@@ -74,10 +74,10 @@ float2 WorldToUv(float4 worldPos)
         isSceneView);
 }
 
-#define UI_SOFT_MASKABLE_EDITOR_ONLY(x) x
-#define SoftMask(_, worldPos) SoftMaskSample(WorldToUv(worldPos))
+//#define UI_SOFT_MASKABLE_EDITOR_ONLY(x) x
+//#define SoftMask(_, worldPos) SoftMaskSample(WorldToUv(worldPos))
 // ^^ UI_SOFT_MASKABLE_EDITOR
-#else
+//#else
 #define UI_SOFT_MASKABLE_EDITOR_ONLY(_)
 #define SoftMask(_, __) 1
 
