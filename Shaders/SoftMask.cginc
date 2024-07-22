@@ -4,7 +4,7 @@ struct appdata_full {
 uniform sampler2D _SoftMaskTex;
 uniform half4 _SoftMaskColor;
 uniform float _AlphaClipThreshold;
-uniform fixed4 _SoftMaskOutsideColor;
+uniform half4 _SoftMaskOutsideColor;
 uniform int _SoftMaskableEnable;
 uniform int _SoftMaskableStereo;
 uniform float4x4 _GameVP;
