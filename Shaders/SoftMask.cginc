@@ -10,6 +10,7 @@ uniform float4x4 _GameVP;
 uniform float4x4 _GameTVP;
 uniform float4x4 _GameVP_2;
 uniform float4x4 _GameTVP_2;
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderVariablesFunctions.hlsl"
 
 half Approximately(float4x4 a, float4x4 b)
 {
@@ -24,7 +25,7 @@ half Approximately(float4x4 a, float4x4 b)
 
 float2 WorldToUv(float4 worldPos)
 {
-    worldPos = mul(UNITY_MATRIX_M, worldPos);
+    worldPos = mul(unity_ObjectToWorld, worldPos);
     float4x4 gameVp = lerp(_GameVP, _GameVP_2, unity_StereoEyeIndex);
     float4x4 gameTvp = lerp(_GameTVP, _GameTVP_2, unity_StereoEyeIndex);
 
