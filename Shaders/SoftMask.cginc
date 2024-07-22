@@ -10,9 +10,6 @@ uniform float4x4 _GameVP;
 uniform float4x4 _GameTVP;
 uniform float4x4 _GameVP_2;
 uniform float4x4 _GameTVP_2;
-HLSLINCLUDE
-#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderVariablesFunctions.hlsl"
-ENDHLSL
 
 half Approximately(float4x4 a, float4x4 b)
 {
