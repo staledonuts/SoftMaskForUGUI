@@ -24,7 +24,7 @@ half Approximately(float4x4 a, float4x4 b)
 
 float2 WorldToUv(float4 worldPos)
 {
-    worldPos = mul(unity_ObjectToWorld, worldPos);
+    worldPos = mul(UNITY_MATRIX_M, worldPos);
     float4x4 gameVp = lerp(_GameVP, _GameVP_2, unity_StereoEyeIndex);
     float4x4 gameTvp = lerp(_GameTVP, _GameTVP_2, unity_StereoEyeIndex);
 
