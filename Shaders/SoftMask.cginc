@@ -11,7 +11,7 @@ uniform float4x4 _GameTVP;
 uniform float4x4 _GameVP_2;
 uniform float4x4 _GameTVP_2;
 
-fixed Approximately(float4x4 a, float4x4 b)
+half Approximately(float4x4 a, float4x4 b)
 {
     float4x4 d = abs(a - b);
     return step(
