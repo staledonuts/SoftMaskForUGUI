@@ -11,7 +11,9 @@ uniform float4x4 _GameVP;
 uniform float4x4 _GameTVP;
 uniform float4x4 _GameVP_2;
 uniform float4x4 _GameTVP_2;
+UNITY_VERTEX_INPUT_INSTANCE_ID
 };
+
 fixed Approximately(float4x4 a, float4x4 b)
 {
     float4x4 d = abs(a - b);
