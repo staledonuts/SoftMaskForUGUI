@@ -1,6 +1,5 @@
 #ifndef UI_SOFT_MASK_INCLUDED
 #define UI_SOFT_MASK_INCLUDED
-struct appdata_full {
 uniform sampler2D _SoftMaskTex;
 uniform half4 _SoftMaskColor;
 uniform float _AlphaClipThreshold;
@@ -11,8 +10,6 @@ uniform float4x4 _GameVP;
 uniform float4x4 _GameTVP;
 uniform float4x4 _GameVP_2;
 uniform float4x4 _GameTVP_2;
-UNITY_VERTEX_INPUT_INSTANCE_ID
-};
 
 fixed Approximately(float4x4 a, float4x4 b)
 {
